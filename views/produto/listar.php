@@ -7,8 +7,12 @@
 </head>
 <body>
 
+    <!-- ============================================================== -->
+    <!-- ORDEM CORRETA: CONTAINER DA LISTA DE PRODUTOS VEM PRIMEIRO -->
+    <!-- ============================================================== -->
     <div class="container">
         <h1>Lista de Produtos</h1>
+        
         <a href="index.php?controller=produto&action=adicionar" class="btn link-adicionar">Adicionar Novo Produto</a>
 
         <table>
@@ -44,5 +48,27 @@
             </tbody>
         </table>
     </div>
+
+    <!-- ========================================================= -->
+    <!-- ORDEM CORRETA: CONTAINER DA GALERIA VEM DEPOIS -->
+    <!-- ========================================================= -->
+    <div class="gallery-container">
+        <h2>Conheça a Loja</h2>
+        <div class="image-gallery">
+            <div class="gallery-item">
+                <img src="assets/images/local-1.png" alt="Cena do café pixel art">
+            </div>
+            <div class="gallery-item">
+                <img src="assets/images/local-2.png" alt="Detalhe do balcão do café">
+            </div>
+            <div class="gallery-item">
+                <img src="assets/images/local-3.png" alt="Mesas externas do café">
+            </div>
+            <div class="gallery-item">
+                <img src="assets/images/local-4.png" alt="Sinal de neon do café">
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

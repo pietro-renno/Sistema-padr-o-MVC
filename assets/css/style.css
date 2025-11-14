@@ -1,20 +1,25 @@
-/* --- Configurações Globais e Fundo --- */
+/* --- Configurações Globais e Fundo (VERSÃO CORRIGIDA) --- */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    padding: 20px;
     
-    /* NOVO: Fundo com o GIF animado */
+    /* Ajuste no padding para dar um espaço no topo e nas laterais */
+    padding: 30px 20px; 
+    
     background-image: url('https://cdna.artstation.com/p/assets/images/images/065/727/966/original/gabriel-bortolazo-coffee.gif?1691069528');
-    background-size: cover; /* Faz o GIF cobrir toda a tela */
-    background-position: center; /* Centraliza o GIF */
-    background-attachment: fixed; /* Mantém o fundo fixo ao rolar a página */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     
-    /* Organização do conteúdo no centro */
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column; /* CORRETO: Empilha os containers */
+    align-items: center;    /* CORRETO: Centraliza os containers horizontalmente */
+    
+    /* REMOVEMOS o justify-content: center que causava o problema */
+    
     min-height: 100vh;
+    gap: 30px; /* Mantém o espaço entre os containers */
+    box-sizing: border-box; /* Garante que o padding não cause overflows */
 }
 
 /* --- O "Box" Central --- */
@@ -163,5 +168,91 @@ button:hover, .btn:hover {
             0 0 20px #4db8ff,
             0 0 25px #4db8ff,
             0 0 30px #4db8ff;
+
     }
+}
+/* Modifique esta regra */
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 15px;
+}
+
+.gallery-item {
+    width: 23%; /* Define uma largura base para cada item */
+    min-width: 180px; /* Garante que não fiquem pequenos demais */
+    aspect-ratio: 16 / 9; /* A MÁGICA: Força o container a ter uma proporção widescreen (16:9) */
+    border-radius: 8px;
+    overflow: hidden; /* Essencial para o 'object-fit' da imagem funcionar */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* Necessário para posicionar a imagem perfeitamente */
+}
+
+.gallery-item:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 8px 25px rgba(97, 218, 251, 0.5);
+}
+
+.gallery-item img {
+    /* Faz a imagem preencher completamente o container pai sem distorcer */
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* CORTA a imagem para caber no aspect-ratio do pai */
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* --- Responsividade da Galeria Corrigida --- */
+/* Para telas de tablet */
+@media (max-width: 992px) {
+    .gallery-item {
+        width: 48%; /* Dois itens por linha */
+    }
+}
+
+/* Para telas de celular */
+@media (max-width: 600px) {
+    .gallery-item {
+        width: 100%; /* Um item por linha */
+        aspect-ratio: 4 / 3; /* Proporção um pouco mais alta para telas verticais */
+    }
+}
+/* --- Estilos do Container da Galeria --- */
+.gallery-container {
+    /* Estilos para criar a "caixa azul" */
+    background-color: rgba(10, 25, 47, 0.90);
+    color: #e6f1ff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    
+    /* Largura máxima maior para dar destaque */
+    max-width: 1100px; 
+    
+    border: 1px solid rgba(135, 206, 235, 0.2);
+}
+
+/* --- Estilo Neon para o Título da Galeria --- */
+.gallery-container h2 {
+    text-align: center;
+    color: #fff;
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin: 0 0 30px 0;
+    letter-spacing: 2px;
+    
+    /* Efeito neon dourado/âmbar */
+    text-shadow:
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px #ffc107,
+        0 0 30px #ffc107,
+        0 0 40px #ffc107,
+        0 0 55px #ffc107,
+        0 0 75px #ffc107;
 }
